@@ -55,7 +55,6 @@ const insertStyleSheet = ({
       display: flex;
       text-align: left;
       align-items: center;
-      position: absolute;
       padding: 0;
       animation: bounce 2s ease-in-out infinite;
       ${positionStyles[position]}
@@ -139,9 +138,8 @@ const insertStyleSheet = ({
   for (let i = 0; i <= 10; i++) {
     styleSheet.innerText += `
       .vapi-btn-volume-${i} {
-        box-shadow: 1px 1px ${5 + i * 2}px ${i * 2}px ${
-      active.color
-    }, inset 0px 0px 10px 0px rgba(0,0,0,0.1);
+        box-shadow: 1px 1px ${5 + i * 2}px ${i * 2}px ${active.color
+      }, inset 0px 0px 10px 0px rgba(0,0,0,0.1);
       }
     `;
   }
@@ -164,7 +162,7 @@ const createButtonElement = (
   const button = document.createElement("button");
   button.id = id;
   button.className = "vapi-btn vapi-btn-round vapi-btn-is-idle";
-  button.onclick = () => {};
+  button.onclick = () => { };
 
   return button;
 };
@@ -179,13 +177,12 @@ const createButtonStateHandler = (config) => {
     if (!stateConfig) return; // If no config for the state, do nothing
 
     // Update the button's appearance based on the state
-    button.className = `vapi-btn vapi-btn-is-${state} ${
-      stateConfig.type === "pill"
+    button.className = `vapi-btn vapi-btn-is-${state} ${stateConfig.type === "pill"
         ? "vapi-btn-pill"
         : stateConfig.type === "round"
-        ? "vapi-btn-round"
-        : ""
-    }`;
+          ? "vapi-btn-round"
+          : ""
+      }`;
 
     // Clear existing content
     button.innerHTML = "";
