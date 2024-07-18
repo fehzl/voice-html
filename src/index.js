@@ -7,7 +7,7 @@ const runSDK = ({
   assistant,
   assistantOverrides,
   squad,
-  anchorElement = document.body, // Nova opção para especificar o elemento âncora
+  anchorElementId = 'defaultAnchor', // ID do elemento âncora como parâmetro
   config = {},
   ...restOptions
 }) => {
@@ -58,24 +58,28 @@ const runSDK = ({
     },
   };
   const buttonConfig = deepMerge(defaultConfig, config);
-  if (apiKey && (assistant || squad)) {
-    const vapi = new Vapi(apiKey);
-    const buttonElement = createButtonElement(buttonConfig);
 
-    const buttonStateHandler = createButtonStateHandler(buttonConfig);
-    anchorElement.appendChild(buttonElement); // Usa o elemento âncora passado como parâmetro
+  document.addEventListener("DOMContentLoaded", () => {
+    const anchorElement = document.getElementById(anchorElementId) || document.body;
+    if (apiKey && (assistant || squad)) {
+      const vapi = new Vapi(apiKey);
+      const buttonElement = createButtonElement(buttonConfig);
 
-    buttonStateHandler(buttonElement, "idle");
-    defaultListeners(vapi, buttonElement, assistant, assistantOverrides, squad, buttonStateHandler);
+      const buttonStateHandler = createButtonStateHandler(buttonConfig);
+      anchorElement.appendChild(buttonElement); // Anexa o botão ao elemento âncora
 
-    window.vapiSDK.vapi = vapi;
-    return vapi;
-  } else {
-    console.error(
-      "API Key and Assistant Configurations are required."
-    );
-    return null;
-  }
+      buttonStateHandler(buttonElement, "idle");
+      defaultListeners(vapi, buttonElement, assistant, assistantOverrides, squad, buttonStateHandler);
+
+      window.vapiSDK.vapi = vapi;
+      return vapi;
+    } else {
+      console.error(
+        "API Key and Assistant Configurations are required."
+      );
+      return null;
+    }
+  });
 };
 
 window.vapiSDK = {
