@@ -60,12 +60,13 @@ const runSDK = ({
   const buttonConfig = deepMerge(defaultConfig, config);
 
   document.addEventListener("DOMContentLoaded", () => {
+    console.log('anchorElementId', anchorElementId);
     const anchorElement = document.getElementById(anchorElementId);
     if (!anchorElement) {
-      console.error("O elemento âncora especificado não foi encontrado no DOM.");
-      return;
+      console.error(
+        "Anchor element not found. Please provide a valid element ID."
+      );
     }
-
     if (apiKey && (assistant || squad)) {
       const vapi = new Vapi(apiKey);
       const buttonElement = createButtonElement(buttonConfig);

@@ -7262,12 +7262,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       }
     }, a);
     document.addEventListener("DOMContentLoaded", () => {
+      console.log("anchorElementId", i);
       const p = document.getElementById(i);
-      if (!p) {
-        console.error("O elemento âncora especificado não foi encontrado no DOM.");
-        return;
-      }
-      if (n && (e || r)) {
+      if (p || console.error(
+        "Anchor element not found. Please provide a valid element ID."
+      ), n && (e || r)) {
         const m = new kl(n), y = Cl(h), b = Ml(h);
         return p.appendChild(y), b(y, "idle"), Al(m, y, e, t, r, b), window.vapiSDK.vapi = m, m;
       } else
