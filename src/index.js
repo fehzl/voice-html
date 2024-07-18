@@ -4,11 +4,12 @@ import { defaultListeners } from "./listeners";
 
 const runSDK = ({
   apiKey = "",
-  assistant,  
+  assistant,
   assistantOverrides,
   squad,
+  anchorElement = document.body, // Nova opção para especificar o elemento âncora
   config = {},
-  ...restOptions 
+  ...restOptions
 }) => {
   function deepMerge(defaultConfig, userConfig) {
     const mergedConfig = { ...defaultConfig };
@@ -62,7 +63,7 @@ const runSDK = ({
     const buttonElement = createButtonElement(buttonConfig);
 
     const buttonStateHandler = createButtonStateHandler(buttonConfig);
-    document.body.appendChild(buttonElement);
+    anchorElement.appendChild(buttonElement); // Usa o elemento âncora passado como parâmetro
 
     buttonStateHandler(buttonElement, "idle");
     defaultListeners(vapi, buttonElement, assistant, assistantOverrides, squad, buttonStateHandler);
@@ -71,7 +72,7 @@ const runSDK = ({
     return vapi;
   } else {
     console.error(
-      "API Key and Assistant Configurations are required. are required"
+      "API Key and Assistant Configurations are required."
     );
     return null;
   }
