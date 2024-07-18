@@ -1,6 +1,12 @@
-export function defaultListeners(vapi, button, assistant, assistantOverrides, squad, buttonStateHandler) {
+export function defaultListeners(vapi, button, assistant, assistantOverrides, squad, buttonStateHandler, anchorElementId) {
   let isActiveCall = false;
+  // Selecionando o elemento âncora usando o ID fornecido
+  const anchorElement = document.getElementById(anchorElementId);
 
+  if (!anchorElement) {
+    console.error("Anchor element not found: " + anchorElementId);
+    return; // Encerra a função se o elemento âncora não for encontrado
+  }
 
   const toggleCall = () => {
     buttonStateHandler(button, "loading");
@@ -8,7 +14,7 @@ export function defaultListeners(vapi, button, assistant, assistantOverrides, sq
       vapi.stop();
       isActiveCall = false;
     } else {
-      if(assistant || assistantOverrides) {
+      if (assistant || assistantOverrides) {
         vapi.start(assistant, assistantOverrides);
       } else {
         console.log('squad ,', squad, assistant, assistantOverrides)
@@ -34,7 +40,9 @@ export function defaultListeners(vapi, button, assistant, assistantOverrides, sq
     button.classList.remove("vapi-btn-is-speaking");
   });
 
-  button.addEventListener("click", toggleCall);
+  // Evento de clique associado ao botão específico dentro do elemento âncora
+  anchorElement.addEventListener("click", toggleCall);
+
   vapi.on("volume-level", (audioLevel) => {
     const volume = Math.floor(audioLevel * 10);
     for (let i = 0; i <= 10; i++) {

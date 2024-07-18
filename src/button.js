@@ -178,10 +178,10 @@ const createButtonStateHandler = (config) => {
 
     // Update the button's appearance based on the state
     button.className = `vapi-btn vapi-btn-is-${state} ${stateConfig.type === "pill"
-        ? "vapi-btn-pill"
-        : stateConfig.type === "round"
-          ? "vapi-btn-round"
-          : ""
+      ? "vapi-btn-pill"
+      : stateConfig.type === "round"
+        ? "vapi-btn-round"
+        : ""
       }`;
 
     // Clear existing content
