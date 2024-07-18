@@ -7266,7 +7266,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         subtitle: "End the call.",
         icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
       }
-    }, s), p = document.getElementById(s.anchorElement) || document.body;
+    }, s), p = document.querySelector(s.anchorElement) || document.body;
     if (n && (e || r)) {
       const m = new kl(n), _ = Cl(h), S = Ml(h);
       return p.appendChild(_), S(_, "idle"), Al(m, _, e, t, r, S, i), window.vapiSDK.vapi = m, m;
