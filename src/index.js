@@ -61,7 +61,7 @@ const runSDK = ({
   const buttonConfig = deepMerge(defaultConfig, config);
 
 
-  const anchorElement = document.getElementById(config.anchorElement) || document.body;
+  const anchorElement = document.querySelector(config.anchorElement) || document.body;
   if (apiKey && (assistant || squad)) {
     const vapi = new Vapi(apiKey);
     const buttonElement = createButtonElement(buttonConfig);
