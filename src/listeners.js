@@ -1,7 +1,7 @@
 export function defaultListeners(vapi, button, assistant, assistantOverrides, squad, buttonStateHandler, anchorElementId) {
   let isActiveCall = false;
   // Selecionando o elemento âncora usando o ID fornecido
-  const anchorElement = document.querySelector('#e_386227_1_172142096996108662_d > div');
+  const anchorElement = document.querySelector('#e_386227_1_172142096996108662 > div');
 
   const toggleCall = () => {
     buttonStateHandler(button, "loading");
