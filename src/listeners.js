@@ -3,11 +3,6 @@ export function defaultListeners(vapi, button, assistant, assistantOverrides, sq
   // Selecionando o elemento âncora usando o ID fornecido
   const anchorElement = document.getElementById(anchorElementId);
 
-  if (!anchorElement) {
-    console.error("Anchor element not found: " + anchorElementId);
-    return; // Encerra a função se o elemento âncora não for encontrado
-  }
-
   const toggleCall = () => {
     buttonStateHandler(button, "loading");
     if (isActiveCall) {

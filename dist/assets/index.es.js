@@ -7197,12 +7197,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   };
   function Al(n, e, t, r, i, s, c) {
     let l = !1;
-    const u = document.getElementById(c);
-    if (!u) {
-      console.error("Anchor element not found: " + c);
-      return;
-    }
-    const h = () => {
+    const u = document.getElementById(c), h = () => {
       s(e, "loading"), l ? (n.stop(), l = !1) : (t || r ? n.start(t, r) : (console.log("squad ,", i, t, r), n.start(void 0, void 0, i)), l = !0);
     };
     n.on("call-start", () => {
